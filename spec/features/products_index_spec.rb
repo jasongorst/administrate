@@ -17,9 +17,9 @@ RSpec.describe "product index page" do
     visit admin_products_path
     click_row_for(product)
 
-    expect(current_path).to eq(admin_product_path(product))
     expect(page).to have_content(product.name)
     expect(page).to have_content(product.description)
+    expect(current_path).to eq(admin_product_path(product))
   end
 
   it "links to the edit page" do
@@ -53,12 +53,25 @@ RSpec.describe "product index page" do
     )
 
     visit admin_products_path
-    expect(page).to have_content(/Gamma.*Alpha.*Beta/)
+
+    within :table do
+      expect(page).to have_css("tbody tr:nth-child(1)", text: "Gamma")
+      expect(page).to have_css("tbody tr:nth-child(2)", text: "Alpha")
+      expect(page).to have_css("tbody tr:nth-child(3)", text: "Beta")
+    end
 
     click_on "Product Meta Tag"
-    expect(page).to have_content(/Alpha.*Beta.*Gamma/)
+    within :table do
+      expect(page).to have_css("tbody tr:nth-child(1)", text: "Alpha")
+      expect(page).to have_css("tbody tr:nth-child(2)", text: "Beta")
+      expect(page).to have_css("tbody tr:nth-child(3)", text: "Gamma")
+    end
 
     click_on "Product Meta Tag"
-    expect(page).to have_content(/Gamma.*Beta.*Alpha/)
+    within :table do
+      expect(page).to have_css("tbody tr:nth-child(1)", text: "Gamma")
+      expect(page).to have_css("tbody tr:nth-child(2)", text: "Beta")
+      expect(page).to have_css("tbody tr:nth-child(3)", text: "Alpha")
+    end
   end
 end
