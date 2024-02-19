@@ -22,6 +22,7 @@ By default, it renders:
     <%= content_for(:title) %> - <%= application_title %>
   </title>
   <%= render "stylesheet" %>
+  <%= render "javascript" %>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag if defined?(csp_meta_tag) %>
 </head>
@@ -36,7 +37,5 @@ By default, it renders:
       <%= yield %>
     </main>
   </div>
-
-  <%= render "javascript" %>
 </body>
 </html>
