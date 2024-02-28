@@ -81,17 +81,9 @@ describe "customer index page" do
     visit admin_customers_path
 
     within(".main-content") { click_on "Orders" }
-    within :table do
-      expect(page).to have_css("tbody tr:nth-child(1)", text: "Cam").and(have_text("1 order"))
-      expect(page).to have_css("tbody tr:nth-child(2)", text: "Ade").and(have_text("2 orders"))
-      expect(page).to have_css("tbody tr:nth-child(3)", text: "Ben").and(have_text("3 orders"))
-    end
+    expect(page).to have_content(/Cam.*1 order.*Ade.*2 orders.*Ben.*3 orders/)
 
     within(".main-content") { click_on "Orders" }
-    within :table do
-      expect(page).to have_css("tbody tr:nth-child(1)", text: "Ben").and(have_text("3 orders"))
-      expect(page).to have_css("tbody tr:nth-child(2)", text: "Ade").and(have_text("2 orders"))
-      expect(page).to have_css("tbody tr:nth-child(3)", text: "Cam").and(have_text("1 order"))
-    end
+    expect(page).to have_content(/Ben.*3 orders.*Ade.*2 orders.*Cam.*1 order/)
   end
 end

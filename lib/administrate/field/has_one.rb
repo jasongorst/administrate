@@ -48,10 +48,6 @@ module Administrate
         data.try(:persisted?)
       end
 
-      def html_controller
-        "select"
-      end
-
       private
 
       def resolver

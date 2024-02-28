@@ -1,6 +1,8 @@
 import "./add_jquery";
 
-import "@hotwired/turbo-rails";
+import {} from "jquery-ujs";
 import "selectize/dist/js/selectize.min.js";
 
-import "./controllers";
+import "./components/associative";
+import "./components/select";
+import "./components/table";

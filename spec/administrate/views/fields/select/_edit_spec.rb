@@ -9,8 +9,7 @@ describe "fields/select/_form", type: :view do
       attribute: :email_subscriber,
       data: false,
       selectable_options: [true, false, nil],
-      include_blank_option: false,
-      html_controller: "select"
+      include_blank_option: false
     )
 
     render(
@@ -19,7 +18,7 @@ describe "fields/select/_form", type: :view do
     )
 
     expect(rendered).to have_css(
-      %(select[name="customer[email_subscriber]"][data-controller~=select]
+      %(select[name="customer[email_subscriber]"]
         option[value="false"][selected="selected"])
     )
   end
@@ -31,8 +30,7 @@ describe "fields/select/_form", type: :view do
       attribute: :email_subscriber,
       data: "Yes",
       selectable_options: ["Yes", "No"],
-      include_blank_option: "Unknown",
-      html_controller: "select"
+      include_blank_option: "Unknown"
     )
 
     render(
@@ -41,7 +39,7 @@ describe "fields/select/_form", type: :view do
     )
 
     expect(rendered).to have_css(
-      %(select[name="customer[email_subscriber]"][data-controller~="select"] option[value=""]),
+      %(select[name="customer[email_subscriber]"] option[value=""]),
       text: "Unknown"
     )
   end

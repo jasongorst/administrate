@@ -77,17 +77,9 @@ feature "order index page" do
     visit admin_orders_path
 
     click_on "Customer"
-    within :table do
-      expect(page).to have_css("tbody tr:nth-child(1)", text: "Alpha")
-      expect(page).to have_css("tbody tr:nth-child(2)", text: "Bravo")
-      expect(page).to have_css("tbody tr:nth-child(3)", text: "Charlie")
-    end
+    expect(page).to have_content(/Alpha.*Bravo.*Charlie/)
 
     click_on "Customer"
-    within :table do
-      expect(page).to have_css("tbody tr:nth-child(1)", text: "Charlie")
-      expect(page).to have_css("tbody tr:nth-child(2)", text: "Bravo")
-      expect(page).to have_css("tbody tr:nth-child(3)", text: "Alpha")
-    end
+    expect(page).to have_content(/Charlie.*Bravo.*Alpha/)
   end
 end

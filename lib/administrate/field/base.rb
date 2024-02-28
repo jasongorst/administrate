@@ -44,10 +44,6 @@ module Administrate
         self.class.html_class
       end
 
-      def html_controller
-        nil
-      end
-
       def name
         attribute.to_s
       end
